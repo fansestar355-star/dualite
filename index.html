@@ -117,7 +117,6 @@
         z-index: 1100;
       }
 
-      /* --- OVERLAY --- */
       #story-overlay {
         position: fixed;
         inset: 0;
@@ -181,7 +180,6 @@
         cursor: pointer;
       }
 
-      /* --- 3D --- */
       model-viewer {
         width: 100%;
         height: 100%;
@@ -241,6 +239,7 @@
         <img src="kabakoo.png" class="logo-main" alt="Logo Kabakoo" />
       </div>
       <a
+        id="btn-retour"
         href="https://fansestar355-star.github.io/Toguna-World/"
         class="btn-back-nav"
         >← RETOUR</a
@@ -299,7 +298,6 @@
         audioBG.pause();
       };
 
-      // Étoiles
       const canvas = document.getElementById("stars-canvas");
       const ctx = canvas.getContext("2d");
       function resize() {
@@ -328,6 +326,15 @@
         });
         requestAnimationFrame(draw);
       }
+
+      // --- PERSISTANCE : transmet le pilier au bouton RETOUR ---
+      var urlParams = new URLSearchParams(window.location.search);
+      var fromPillar = urlParams.get("from_pillar");
+      if (fromPillar !== null) {
+        var btnRetour = document.getElementById("btn-retour");
+        btnRetour.href = btnRetour.href + "?pillar=" + fromPillar;
+      }
+
       draw();
     </script>
   </body>
